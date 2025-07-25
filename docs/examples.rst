@@ -149,36 +149,36 @@ reddening along the entire line of sight.
 
 .. code-block :: python
     
-    from __future__ import print_function
-    from astropy.coordinates import SkyCoord
-    from dustmaps.bayestar import BayestarQuery
-    
-    coords = SkyCoord(180., 0., unit='deg', frame='galactic')
-    
-    ebv = bayestar(coords, mode='random_sample')
-    
-    print(ebv)
-	>>> [ 0.         0.         0.         0.         0.         0.
-		  0.         0.         0.         0.         0.         0.
-		  0.         0.         0.         0.         0.         0.04
-		  0.04       0.04       0.04       0.04       0.04       0.04
-		  0.04       0.05       0.05       0.05       0.07       0.09
-		  0.09       0.09       0.09999999 0.09999999 0.09999999 0.11
-		  0.11       0.11       0.11       0.12       0.12       0.12
-		  0.12       0.12       0.14       0.14       0.16       0.17999999
-		  0.19       0.19999999 0.21       0.21       0.22       0.22999999
-		  0.22999999 0.26999998 0.26999998 0.57       0.59       0.59
-		  0.59       0.68       0.69       0.7        0.71       0.77
-		  0.78       0.81       0.82       0.82       0.83       0.85999995
-		  0.87       0.98999995 0.98999995 1.02       1.02       1.03
-		  1.09       1.11       1.11       1.11       1.11       1.11
-		  1.11       1.11       1.11       1.11       1.11       1.11
-		  1.11       1.11       1.11       1.11       1.11       1.11
-		  1.12       1.12       1.12       1.12       1.12       1.12
-		  1.12       1.12       1.12       1.12       1.12       1.12
-		  1.12       1.12       1.12       1.12       1.12       1.12
-		  1.12       1.12       1.12       1.12       1.12       1.12]
+	from __future__ import print_function
+	from astropy.coordinates import SkyCoord
+	from dustmaps.bayestar import BayestarQuery
 	
+	coords = SkyCoord(180., 0., unit='deg', frame='galactic')
+	
+	ebv = bayestar(coords, mode='random_sample')
+	
+	print(ebv)
+	>>> [0.         0.         0.         0.         0.         0.
+		 0.         0.         0.         0.         0.         0.
+		 0.         0.         0.         0.         0.         0.04
+		 0.04       0.04       0.04       0.04       0.04       0.04
+		 0.04       0.05       0.05       0.05       0.07       0.09
+		 0.09       0.09       0.09999999 0.09999999 0.09999999 0.11
+		 0.11       0.11       0.11       0.12       0.12       0.12
+		 0.12       0.12       0.14       0.14       0.16       0.17999999
+		 0.19       0.19999999 0.21       0.21       0.22       0.22999999
+		 0.22999999 0.26999998 0.26999998 0.57       0.59       0.59
+		 0.59       0.68       0.69       0.7        0.71       0.77
+		 0.78       0.81       0.82       0.82       0.83       0.85999995
+		 0.87       0.98999995 0.98999995 1.02       1.02       1.03
+		 1.09       1.11       1.11       1.11       1.11       1.11
+		 1.11       1.11       1.11       1.11       1.11       1.11
+		 1.11       1.11       1.11       1.11       1.11       1.11
+		 1.12       1.12       1.12       1.12       1.12       1.12
+		 1.12       1.12       1.12       1.12       1.12       1.12
+		 1.12       1.12       1.12       1.12       1.12       1.12
+		 1.12       1.12       1.12       1.12       1.12       1.12]
+
 
 Here, the Bayestar map has given us a single random sample of the cumulative
 dust reddening *along the entire line of sight* -- that is, to a set of
@@ -186,37 +186,38 @@ distances. To see what those distances are, we can call:
 
 .. code-block :: python
     
-    bayestar.distances
+	bayestar.distances
 	>>> <Quantity [  0.06309573,  0.06683439,  0.07079458,  0.07498942,
-                 0.07943282,  0.08413951,  0.08912509,  0.09440609,
-                 0.1       ,  0.10592537,  0.11220185,  0.11885022,
-                 0.12589254,  0.13335214,  0.14125375,  0.14962357,
-                 0.15848932,  0.1678804 ,  0.17782794,  0.18836491,
-                 0.19952623,  0.2113489 ,  0.22387211,  0.23713737,
-                 0.25118864,  0.26607251,  0.28183829,  0.29853826,
-                 0.31622777,  0.33496544,  0.35481339,  0.3758374 ,
-                 0.39810717,  0.4216965 ,  0.44668359,  0.47315126,
-                 0.50118723,  0.53088444,  0.56234133,  0.59566214,
-                 0.63095734,  0.66834392,  0.70794578,  0.74989421,
-                 0.79432823,  0.84139514,  0.89125094,  0.94406088,
-                 1.        ,  1.05925373,  1.12201845,  1.18850223,
-                 1.25892541,  1.33352143,  1.41253754,  1.49623566,
-                 1.58489319,  1.67880402,  1.77827941,  1.88364909,
-                 1.99526231,  2.11348904,  2.23872114,  2.37137371,
-                 2.51188643,  2.66072506,  2.81838293,  2.98538262,
-                 3.16227766,  3.34965439,  3.54813389,  3.75837404,
-                 3.98107171,  4.21696503,  4.46683592,  4.73151259,
-                 5.01187234,  5.30884444,  5.62341325,  5.95662144,
-                 6.30957344,  6.68343918,  7.07945784,  7.49894209,
-                 7.94328235,  8.41395142,  8.91250938,  9.44060876,
-                10.        , 10.59253725, 11.22018454, 11.88502227,
-                12.58925412, 13.33521432, 14.12537545, 14.96235656,
-                15.84893192, 16.78804018, 17.7827941 , 18.83649089,
-                19.95262315, 21.1348904 , 22.38721139, 23.71373706,
-                25.11886432, 26.6072506 , 28.18382931, 29.85382619,
-                31.6227766 , 33.49654392, 35.48133892, 37.58374043,
-                39.81071706, 42.16965034, 44.66835922, 47.3151259 ,
-                50.11872336, 53.08844442, 56.23413252, 59.56621435] kpc>
+					0.07943282,  0.08413951,  0.08912509,  0.09440609,
+					0.1       ,  0.10592537,  0.11220185,  0.11885022,
+					0.12589254,  0.13335214,  0.14125375,  0.14962357,
+					0.15848932,  0.1678804 ,  0.17782794,  0.18836491,
+					0.19952623,  0.2113489 ,  0.22387211,  0.23713737,
+					0.25118864,  0.26607251,  0.28183829,  0.29853826,
+					0.31622777,  0.33496544,  0.35481339,  0.3758374 ,
+					0.39810717,  0.4216965 ,  0.44668359,  0.47315126,
+					0.50118723,  0.53088444,  0.56234133,  0.59566214,
+					0.63095734,  0.66834392,  0.70794578,  0.74989421,
+					0.79432823,  0.84139514,  0.89125094,  0.94406088,
+					1.        ,  1.05925373,  1.12201845,  1.18850223,
+					1.25892541,  1.33352143,  1.41253754,  1.49623566,
+					1.58489319,  1.67880402,  1.77827941,  1.88364909,
+					1.99526231,  2.11348904,  2.23872114,  2.37137371,
+					2.51188643,  2.66072506,  2.81838293,  2.98538262,
+					3.16227766,  3.34965439,  3.54813389,  3.75837404,
+					3.98107171,  4.21696503,  4.46683592,  4.73151259,
+					5.01187234,  5.30884444,  5.62341325,  5.95662144,
+					6.30957344,  6.68343918,  7.07945784,  7.49894209,
+					7.94328235,  8.41395142,  8.91250938,  9.44060876,
+				   10.        , 10.59253725, 11.22018454, 11.88502227,
+				   12.58925412, 13.33521432, 14.12537545, 14.96235656,
+				   15.84893192, 16.78804018, 17.7827941 , 18.83649089,
+				   19.95262315, 21.1348904 , 22.38721139, 23.71373706,
+				   25.11886432, 26.6072506 , 28.18382931, 29.85382619,
+				   31.6227766 , 33.49654392, 35.48133892, 37.58374043,
+				   39.81071706, 42.16965034, 44.66835922, 47.3151259 ,
+				   50.11872336, 53.08844442, 56.23413252, 59.56621435] kpc>
+
 
 
 The return type is an `astropy.unit.Quantity <http://astropy.readthedocs.io/en/stable/api/astropy.units.Quantity.html>`_
@@ -253,43 +254,45 @@ argument :code:`mode` to :code:`dustmaps.bayestar.BayestarQuery.__call__`.
 
 For example, if we want all the reddening samples, we invoke:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     l = np.array([30.,  60., 90.]) * units.deg
     b = np.array([10., -10., 15.]) * units.deg
     d = np.array([1.5,  0.3, 4.0]) * units.kpc
-    
+
     coords = SkyCoord(l, b, distance=d, frame='galactic')
-    
+
     ebv = bayestar(coords, mode='samples')
-    
-    print(ebv.shape) # (# of coordinates, # of samples)
+
+    print(ebv.shape)  # (# of coordinates, # of samples)
     >>> (3, 2)
-    
+
     print(ebv)
-    >>> [[0.26999998 0.29999998] # Two samples at the first coordinate
- 		[0.         0.01      ] # Two samples at the second coordinate
- 		[0.09999999 0.08      ]] # Two samples at the third coordinate
+    >>> [[0.26999998 0.29999998]
+    ...  [0.         0.01      ]
+    ...  [0.09999999 0.08      ]]
+
 
 If we instead ask for the mean reddening, the shape of the output is different:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     ebv = bayestar(coords, mode='mean')
-    
-    print(ebv.shape) # (# of coordinates)
+
+    print(ebv.shape)  # (# of coordinates)
     >>> (3,)
-    
+
     print(ebv)
     >>> [0.28499997 0.005      0.09      ]
+
 
 The only axis is for the different coordinates, because we have reduced the
 samples axis by taking the mean.
 
-In general, the shape of the output from the Bayestar and DECaPS maps are:
+In general, the shape of the output from the Bayestar and DECaPS maps is:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     (coordinate, distance, sample)
 
 where any of the axes can be missing (e.g., if only one coordinate was
@@ -297,26 +300,27 @@ specified, if distances were provided, or if the median reddening was
 requested).
 
 Percentiles are handled in much the same way as samples. In the following
-query, we request the 16th, 50th and 84th percentiles of reddening at each
+query, we request the 16th, 50th, and 84th percentiles of reddening at each
 coordinate, using the same coordinates as we generated in the previous example:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     ebv = bayestar(coords, mode='percentile', pct=[16., 50., 84.])
-    
+
     print(ebv)
-    >>> [[0.27479998 0.28499998 0.29519998] # Percentiles at 1st coordinate
- 		[0.0016     0.005      0.0084    ]  # Percentiles at 2nd coordinate
- 		[0.0832     0.09       0.09679999]] # Percentiles at 3rd coordinate
+    >>> [[0.27479998  0.28499998  0.29519998]  # Percentiles at 1st coordinate
+         [0.0016      0.005       0.0084    ]  # Percentiles at 2nd coordinate
+         [0.0832      0.09        0.09679999]] # Percentiles at 3rd coordinate
+
 
 We can also pass a single percentile:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     ebv = bayestar(coords, mode='percentile', pct=25.)
-    
+
     print(ebv)
-    >>> [0.27749997 0.0025     0.08499999] # 25th percentile at 3 coordinates
+    >>> [0.27749997  0.0025      0.08499999]  # 25th percentile at 3 coordinates
 
 
 Getting Quality Assurance Flags from the Bayestar and DECaPS Dust Maps
@@ -325,45 +329,47 @@ Getting Quality Assurance Flags from the Bayestar and DECaPS Dust Maps
 For the Bayestar and DECaPS dust maps, one can retrieve QA flags by providing the keyword
 argument :code:`return_flags=True`:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     ebv, flags = bayestar(coords, mode='median', return_flags=True)
-    
+
     print(flags.dtype)
     >>> [('converged', '?'), ('reliable_dist', '?')]
-    
-    print(flags['converged']) # Whether or not fit converged in each pixel
+
+    print(flags['converged'])  # Whether or not fit converged in each pixel
     >>> [ True  True  True]
-    
+
     # Whether or not map is reliable at requested distances
     print(flags['reliable_dist'])
     >>> [ True False  True]
-    
-DECaPS shares the same quality flags as Bayestar, but includes one additional flag, called "infilled" which indicates whether the pixel needed to be infilled due to an insufficient number of stars :
 
-.. code-block :: python
+DECaPS shares the same quality flags as Bayestar, but includes one additional flag, called
+"infilled", which indicates whether the pixel needed to be infilled due to an insufficient
+number of stars:
 
-	>>> [('converged', '?'), ('infilled', '?'), ('reliable_dist', '?')]
+.. code-block:: python
 
+    >>> [('converged', '?'), ('infilled', '?'), ('reliable_dist', '?')]
 
 If the coordinates do not include distances, then instead of
-:code:`'reliable_dist'`, the query will return the minimum and maxmimum reliable
+:code:`'reliable_dist'`, the query will return the minimum and maximum reliable
 distance moduli of the map in each requested coordinate:
 
-.. code-block :: python
-    
+.. code-block:: python
+
     l = np.array([30.,  60., 90.]) * units.deg
     b = np.array([10., -10., 15.]) * units.deg
-    
+
     coords = SkyCoord(l, b, frame='galactic')
-    
+
     ebv, flags = bayestar(coords, mode='median', return_flags=True)
-    
+
     print(flags['min_reliable_distmod'])
-    >>> [7.5968404 7.9513497 6.7628193]
-    
+    >>> [ 7.5968404  7.9513497  6.7628193]
+
     print(flags['max_reliable_distmod'])
     >>> [14.584786 14.536094 14.613377]
+
 
 We can see from the above that in the previous example, the reason the second
 coordinate was labeled unreliable was because the requested distance (300 pc)
