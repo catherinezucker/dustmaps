@@ -247,7 +247,7 @@ it returns only a single value.
 How Probability is Handled
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Bayestar and DECaPS 3D dust maps are probabilistic, meaning that it stores random samples
+The Bayestar and DECaPS 3D dust maps are probabilistic, meaning that they store random samples
 of how dust reddening could increase along each sightline. Sometimes we might be
 interested in the median reddening to a given point in space, or we might want
 to have all the samples of reddening out to that point. We specify how we want
@@ -401,7 +401,7 @@ Bayestar, and DECaPS Dust maps. First, we'll import the necessary modules:
     from dustmaps.decaps import DECaPSQuery
 
 
-Next, we'll set up a grid of coordinates to plot, centered on a small region of the sky toward the Pipe Nebula, where Bayestar and DECaPS dust maps have overlapping coverage (near declination = -30°):
+Next, we'll set up a grid of coordinates to plot, centered on a small region of the sky toward the Pipe Nebula, where the Bayestar and DECaPS dust maps have overlapping coverage (near declination = -30°):
 
 .. code-block :: python
 
@@ -425,7 +425,7 @@ Then, we'll load up and query four different dust maps:
 	bayestar = BayestarQuery()
 	Av_bayestar = 2.742 * bayestar(coords, mode='mean')
 	
-	decaps = DECaPSQuery()
+	decaps = DECaPSQuery(mean_only=True)
 	Av_decaps = 3.32 * decaps(coords, mode='mean')
 
 We've assumed :math:`R_V = 3.1`, and used the coefficient from
