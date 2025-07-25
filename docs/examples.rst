@@ -433,20 +433,18 @@ to convert SFD and Bayestar reddenings to magnitudes of :math:`A_V`. We assumed 
 
 Finally, we create the figure using :code:`matplotlib`:
 
-.. code-block:: python
+.. code-block :: python
 
-    fig = plt.figure(figsize=(16, 4), dpi=150)
+    fig = plt.figure(figsize=(16,4), dpi=150)
 
-    for k, (Av, title) in enumerate([
-        (Av_sfd, 'SFD'),
-        (Av_planck, 'Planck'),
-        (Av_bayestar, 'Bayestar19'),
-        (Av_decaps, 'DECaPS')
-    ]):
-        ax = fig.add_subplot(1, 4, k + 1)
+    for k,(Av,title) in enumerate([(Av_sfd, 'SFD'),
+                                   (Av_planck, 'Planck'),
+                                   (Av_bayestar, 'Bayestar19'),
+                                   (Av_decaps,'DECaPS')]):
+        ax = fig.add_subplot(1,4,k+1)
         ax.imshow(
             Av[:, ::-1],
-            vmin=0.0,
+            vmin=0.,
             vmax=10,
             origin='lower',
             interpolation='nearest',
@@ -456,7 +454,7 @@ Finally, we create the figure using :code:`matplotlib`:
         ax.axis('off')
         ax.set_title(title)
 
-    fig.subplots_adjust(wspace=0.0, hspace=0.0)
+    fig.subplots_adjust(wspace=0., hspace=0.)
     plt.savefig('comparison.png', dpi=300)
 
 
