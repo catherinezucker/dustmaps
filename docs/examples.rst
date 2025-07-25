@@ -428,7 +428,7 @@ Then, we'll load up and query four different dust maps:
 
 We've assumed :math:`R_V = 3.1`, and used the coefficient from
 `Table 6 of Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_
-to convert SFD and Bayestar reddenings to magnitudes of :math:`A_V`. We assumed :math:`R_V = 3.32` from from
+to convert SFD and Bayestar reddenings to magnitudes of :math:`A_V`. We assumed :math:`R_V = 3.32` from
 `Schlafly et al. (2016) <https://ui.adsabs.harvard.edu/abs/2016ApJ...821...78S/abstract>`_ to convert DECaPS.
 
 Finally, we create the figure using :code:`matplotlib`:
