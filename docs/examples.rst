@@ -270,9 +270,9 @@ For example, if we want all the reddening samples, we invoke:
     >>> (3, 2)
 
     print(ebv)
-    >>> [[0.26999998 0.29999998]
-    ...  [0.         0.01      ]
-    ...  [0.09999999 0.08      ]]
+    >>> [[0.26999998 0.29999998]  # Two samples at the first coordinate
+    ...  [0.         0.01      ]  # Two samples at the second coordinate
+    ...  [0.09999999 0.08      ]] # Two samples at the third coordinate
 
 
 If we instead ask for the mean reddening, the shape of the output is different:
