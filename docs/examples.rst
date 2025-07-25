@@ -424,7 +424,7 @@ Then, we'll load up and query four different dust maps:
 	Av_bayestar = 2.742 * bayestar(coords, mode='mean')
 	
 	decaps = DECaPSQuery()
-	Av_decaps = 3.32 * decaps(coords,mode='mean')
+	Av_decaps = 3.32 * decaps(coords, mode='mean')
 
 We've assumed :math:`R_V = 3.1`, and used the coefficient from
 `Table 6 of Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_
