@@ -396,35 +396,35 @@ Bayestar, and DECaPS Dust maps. First, we'll import the necessary modules:
     from dustmaps.sfd import SFDQuery
     from dustmaps.planck import PlanckQuery
     from dustmaps.bayestar import BayestarQuery
-    from dustmaps.decaps import DECaPSQueryLite
+    from dustmaps.decaps import DECaPSQuery
 
 
 Next, we'll set up a grid of coordinates to plot, centered on a small region of the sky toward the Pipe Nebula, where Bayestar and DECaPS dust maps have overlapping coverage (near declination = -30°):
 
 .. code-block :: python
-    
-    l0, b0 = (37., -16.)
-    l = np.arange(l0 - 5., l0 + 5., 0.05)
-    b = np.arange(b0 - 5., b0 + 5., 0.05)
-    l, b = np.meshgrid(l, b)
-    coords = SkyCoord(l*units.deg, b*units.deg,
-                      distance=1.*units.kpc, frame='galactic')
+
+	l0, b0 = (3, 5)
+	l = np.arange(l0 - 2., l0 + 2., 0.01)
+	b = np.arange(b0 - 2., b0 + 2., 0.01)
+	l, b = np.meshgrid(l, b)
+	coords = SkyCoord(l*units.deg, b*units.deg,distance=5*units.kpc,frame='galactic')
+
 
 Then, we'll load up and query four different dust maps:
 
 .. code-block :: python
     
-    sfd = SFDQuery()
-    Av_sfd = 2.742 * sfd(coords)
-    
-    planck = PlanckQuery()
-    Av_planck = 3.1 * planck(coords)
-    
-    bayestar = BayestarQuery(max_samples=1)
-    Av_bayestar = 2.742 * bayestar(coords)
-    
-    decaps = DECaPSQueryLite()
-    Av_decaps = 3.32 * decaps(coords)
+	sfd = SFDQuery()
+	Av_sfd = 2.742 * sfd(coords)
+	
+	planck = PlanckQuery()
+	Av_planck = 3.1 * planck(coords)
+	
+	bayestar = BayestarQuery()
+	Av_bayestar = 2.742 * bayestar(coords, mode='mean')
+	
+	decaps = DECaPSQuery()
+	Av_decaps = 3.32 * decaps(coords,mode='mean')
 
 We've assumed :math:`R_V = 3.1`, and used the coefficient from
 `Table 6 of Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_
@@ -435,27 +435,27 @@ Finally, we create the figure using :code:`matplotlib`:
 
 .. code-block :: python
     
-    fig = plt.figure(figsize=(16,4), dpi=150)
-    
-    for k,(Av,title) in enumerate([(Av_sfd, 'SFD'),
-                                   (Av_planck, 'Planck'),
-                                   (Av_bayestar, 'Bayestar'),
-                                   (Av_decaps,'DECaPS')]):
-        ax = fig.add_subplot(1,3,k+1)
-        ax.imshow(
-            np.sqrt(Av)[::,::-1],
-            vmin=0.,
-            vmax=2.,
-            origin='lower',
-            interpolation='nearest',
-            cmap='binary',
-            aspect='equal'
-        )
-        ax.axis('off')
-        ax.set_title(title)
-    
-    fig.subplots_adjust(wspace=0., hspace=0.)
-    plt.savefig('comparison.png', dpi=150)
+	fig = plt.figure(figsize=(16,4), dpi=150)
+	
+	for k,(Av,title) in enumerate([(Av_sfd, 'SFD'),
+								   (Av_planck, 'Planck'),
+								   (Av_bayestar, 'Bayestar19'),
+								   (Av_decaps,'DECaPS')]):
+		ax = fig.add_subplot(1,4,k+1)
+		ax.imshow(
+			Av[::,::-1],
+			vmin=0.,
+			vmax=10,
+			origin='lower',
+			interpolation='nearest',
+			cmap='binary',
+			aspect='equal'
+		)
+		ax.axis('off')
+		ax.set_title(title)
+	
+	fig.subplots_adjust(wspace=0., hspace=0.)
+	plt.savefig('comparison.png', dpi=300)
 
 Here's the result:
 
