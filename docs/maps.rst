@@ -166,11 +166,11 @@ The map has an angular resolution of 1' (on par with Herschel), a typical maximu
 The map is probabilistic. containing samples of the reddening along each line of sight. The "DECaPS" dust map is
 inferred from stellar photometry of 709 million stars observed by the DECaPS2 survey, in combination with 2MASS, VVV, and unWISE. 
 The DECaPS map also makes use of *Gaia* DR3 parallaxes where available. When combined with Bayestar, DECaPS completes the coverage
-of the Galactic plane within a 20°-thick strip, enabling reddening estimates over the entire disk. 
+of the Galactic plane within a 20°-thick strip, enabling reddening estimates over the entire disk. To combine the two maps for complete plane coverage, query Bayestar north of declination -30° and DECaPS south of declination -30°.
 
 Unlike the Bayestar map, whose reddening is reported in an arbitrary unit, the DECaPS reddening is reported in units of E(B-V) in mags
 
-* **References**: `Zucker, Saydjari, Speagle et al. 2025 <https://arxiv.org/abs/2503.02657>`_
+* **References**: `Zucker, Saydjari, Speagle et al. 2025 <https://ui.adsabs.harvard.edu/abs/2025arXiv250302657Z/abstract>`_
 * **Data**: `Dataverse <https://doi.org/10.7910/DVN/J9JCKO>`_
 
 
