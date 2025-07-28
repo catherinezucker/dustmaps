@@ -141,7 +141,7 @@ When querying a 3D dust map, there are two slight complications:
 Let's see how this works out with the "Bayestar" 2019 3D dust map of
 `Green et al. (2019) <http://argonaut.skymaps.info>`_. The DECaPS 3D dust map from 
 `Zucker, Saydjari, and Speagle et al. (2025) <https://ui.adsabs.harvard.edu/abs/2025arXiv250302657Z/abstract>`_
-(complementing Bayestar in the southern Galactic plane) can be queried in a similar manner.
+(complementing Bayestar in the southern Galactic plane) can be queried in a similar manner, with a few key differences outlined later on in the examples. 
 
 How Distances are Handled
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -378,6 +378,26 @@ distance moduli of the map in each requested coordinate:
 We can see from the above that in the previous example, the reason the second
 coordinate was labeled unreliable was because the requested distance (300 pc)
 was closer than a distance modulus of 7.95 (corresponding to ~389 pc).
+
+Combining the Bayestar and DECaPS 3D Dust Maps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The DECaPS map can largely be queried in a similar manner to the DECaPS map. However, due to the increased angular resolution of the DECaPS map (approximately 1′), the size of the data products is significantly larger, so dustmaps provides a few additional options to accommodate users with limited storage. First, users have the option to only download (and query) the mean map (7 GB), which is significantly smaller in size than downloading the mean and the samples (35 DB). If only the mean map is downloaded, users will need to specify an additional argument,``mean_only = True”, which will preclude the optional to query in any other mode: 
+
+.. code-block :: python
+
+	from dustmaps.decaps import DECaPSQuery
+	decaps = DECaPSQuery(mean_only=True)
+
+The DECaPSQuery class will load the entire map into memory. For less intensive queries, dustmaps provides an additional class, called DECaPSQueryLite, which implements memory mapping, such that the entire map does not need to be loaded into RAM. This is useful for small queries:  
+
+.. code-block :: python
+
+	from dustmaps.decaps import DECaPSQueryLite
+	decapslite = DECaPSQueryLite()
+
+To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for regions north of declination :math:\delta = -30^\circ and DECaPS for regions south of :math:\delta = -30^\circ, taking advantage of each map’s optimal sky coverage. As an example, we can generate a few dozen random coordinates in the Galactic plane, filter them by declination, and then query the appropriate map—Bayestar or DECaPS—based on each coordinate’s position.
+
 
 
 Plotting the Dust Maps
