@@ -401,25 +401,25 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
 
 .. code-block:: python
 
-    import numpy as np
-    from astropy.coordinates import SkyCoord
-    import astropy.units as u
-
+	import numpy as np
+	from astropy.coordinates import SkyCoord
+	from astropy import units
+	
 	#generate random coordinates in the plane
-    n_coords = 50
-    l = np.random.uniform(0, 360, n_coords)  
-    b = np.random.uniform(-10, 10, n_coords) 
-
-    gal_coords = SkyCoord(l=l*u.deg, b=b*u.deg, frame='galactic')
-
-    # Filter based on declination
-    mask_north = gal_coords.icrs.dec.deg > -30
-    mask_south = gal_coords.icrs.dec.deg <= -30
-
+	n_coords = 50
+	l = np.random.uniform(0, 360, n_coords)
+	b = np.random.uniform(-10, 10, n_coords)
+	
+	gal_coords = SkyCoord(l=l*u.deg, b=b*u.deg, distance=3*units.kpc, frame='galactic')
+	
+	# Filter based on declination
+	mask_north = gal_coords.icrs.dec.deg > -30
+	mask_south = gal_coords.icrs.dec.deg <= -30
+	
 	#query both maps
-    ebv_bs = 0.883 * bayestar(gal_coords[mask_north], mode='random_sample')
-    ebv_decaps = decapslite(gal_coords[mask_south], mode='random_sample')
-
+	ebv_bs = 0.883 * bayestar(gal_coords[mask_north], mode='random_sample')
+	ebv_decaps = decapslite(gal_coords[mask_south], mode='random_sample')
+		
 The DECaPS map reports reddening directly in units of E(B−V), while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to E(B−V), we use the relation E(B−V) = 0.88 × E_Bayestar19. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives E(g−r) = 0.901 × E_Bayestar19, combined with the relation E(B−V) = 0.98 × E(g−r) from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
 
 	
