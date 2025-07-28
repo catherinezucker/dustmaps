@@ -161,7 +161,7 @@ reddening along the entire line of sight.
 
     e_bs = bayestar(coords, mode='random_sample')
 
-    print(ebv)
+    print(e_bs)
     >>> [0.         0.         0.         0.         0.         0.
          0.         0.         0.         0.         0.         0.
          0.         0.         0.         0.         0.         0.04
