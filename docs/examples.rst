@@ -159,9 +159,9 @@ reddening along the entire line of sight.
     
     bayestar = BayestarQuery(max_samples=2)
 
-    e_bs = bayestar(coords, mode='random_sample')
+    E = bayestar(coords, mode='random_sample')
 
-    print(e_bs)
+    print(E)
     >>> [0.         0.         0.         0.         0.         0.
          0.         0.         0.         0.         0.         0.
          0.         0.         0.         0.         0.         0.04
@@ -236,9 +236,9 @@ distances:
     
     coords = SkyCoord(180.*units.deg, 0.*units.deg,
                       distance=500.*units.pc, frame='galactic')
-    e_bs = bayestar(coords, mode='median')
+    E = bayestar(coords, mode='median')
     
-    print(e_bs)
+    print(E)
     >>> 0.105
 
 Because we have explicitly told Bayestar what distance to evaluate the map at,
@@ -265,12 +265,12 @@ For example, if we want all the reddening samples, we invoke:
 
     coords = SkyCoord(l, b, distance=d, frame='galactic')
 
-    e_bs = bayestar(coords, mode='samples')
+    E = bayestar(coords, mode='samples')
 
-    print(e_bs.shape)  # (# of coordinates, # of samples)
+    print(E.shape)  # (# of coordinates, # of samples)
     >>> (3, 2)
 
-    print(e_bs)
+    print(E)
     >>> [[0.26999998 0.29999998]  # Two samples at the first coordinate
     ...  [0.         0.01      ]  # Two samples at the second coordinate
     ...  [0.09999999 0.08      ]] # Two samples at the third coordinate
@@ -280,12 +280,12 @@ If we instead ask for the mean reddening, the shape of the output is different:
 
 .. code-block:: python
 
-    e_bs = bayestar(coords, mode='mean')
+    E = bayestar(coords, mode='mean')
 
-    print(e_bs.shape)  # (# of coordinates)
+    print(E.shape)  # (# of coordinates)
     >>> (3,)
 
-    print(e_bs)
+    print(E)
     >>> [0.28499997 0.005      0.09      ]
 
 
@@ -308,9 +308,9 @@ coordinate, using the same coordinates as we generated in the previous example:
 
 .. code-block:: python
 
-    e_bs = bayestar(coords, mode='percentile', pct=[16., 50., 84.])
+    E = bayestar(coords, mode='percentile', pct=[16., 50., 84.])
 
-    print(e_bs)
+    print(E)
     >>> [[0.27479998  0.28499998  0.29519998]  # Percentiles at 1st coordinate
          [0.0016      0.005       0.0084    ]  # Percentiles at 2nd coordinate
          [0.0832      0.09        0.09679999]] # Percentiles at 3rd coordinate
@@ -320,9 +320,9 @@ We can also pass a single percentile:
 
 .. code-block:: python
 
-    e_bs = bayestar(coords, mode='percentile', pct=25.)
+    E = bayestar(coords, mode='percentile', pct=25.)
 
-    print(e_bs)
+    print(E)
     >>> [0.27749997  0.0025      0.08499999]  # 25th percentile at 3 coordinates
 
 
@@ -334,7 +334,7 @@ argument :code:`return_flags=True`:
 
 .. code-block:: python
 
-    e_bs, flags = bayestar(coords, mode='median', return_flags=True)
+    E, flags = bayestar(coords, mode='median', return_flags=True)
 
     print(flags.dtype)
     >>> [('converged', '?'), ('reliable_dist', '?')]
@@ -365,7 +365,7 @@ distance moduli of the map in each requested coordinate:
 
     coords = SkyCoord(l, b, frame='galactic')
 
-    e_bs, flags = bayestar(coords, mode='median', return_flags=True)
+    E, flags = bayestar(coords, mode='median', return_flags=True)
 
     print(flags['min_reliable_distmod'])
     >>> [ 7.5968404  7.9513497  6.7628193]
