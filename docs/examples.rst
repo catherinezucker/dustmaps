@@ -397,7 +397,7 @@ By default, the `DECaPSQuery` class loads the full map into memory. For lightwei
     from dustmaps.decaps import DECaPSQueryLite
     decapslite = DECaPSQueryLite()
 
-To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for regions **north of declination −30°**, and DECaPS for regions **south of −30°**, taking advantage of each map’s sky coverage. For example, we can generate a few dozen random coordinates in the Galactic plane, filter them by declination, and query the appropriate map based on each coordinate’s position:
+To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for regions **north of declination −30°**, and DECaPS for regions **south of declination −30°**, taking advantage of each map’s sky coverage. For example, we can generate a few dozen random coordinates in the Galactic plane, filter them by declination, and query the appropriate map based on each coordinate’s position:
 
 .. code-block:: python
 
@@ -405,9 +405,10 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
     from astropy.coordinates import SkyCoord
     import astropy.units as u
 
+	#generate random coordinates in the plane
     n_coords = 50
-    l = np.random.uniform(0, 360, n_coords)     # Galactic longitude [0, 360) deg
-    b = np.random.uniform(-10, 10, n_coords)    # Galactic latitude [-10, 10] deg
+    l = np.random.uniform(0, 360, n_coords)  
+    b = np.random.uniform(-10, 10, n_coords) 
 
     gal_coords = SkyCoord(l=l*u.deg, b=b*u.deg, frame='galactic')
 
@@ -415,10 +416,11 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
     mask_north = gal_coords.icrs.dec.deg > -30
     mask_south = gal_coords.icrs.dec.deg <= -30
 
+	#query both maps
     ebv_bs = 0.883 * bayestar(gal_coords[mask_north], mode='random_sample')
     ebv_decaps = decapslite(gal_coords[mask_south], mode='random_sample')
 
-The DECaPS map reports reddening directly in units of :math:`E(B-V)`, while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to :math:`E(B-V)`, we use the relation :math:`E(B-V) = 0.88 \times E_\mathrm{Bayestar19}`. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives :math:`E(g - r) = 0.901 \times E_\mathrm{Bayestar19}`, combined with the relation :math:`E(B - V) = 0.98 \times E(g - r)` from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
+The DECaPS map reports reddening directly in units of E(B−V), while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to E(B−V), we use the relation E(B−V) = 0.88 × E_Bayestar19. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives E(g−r) = 0.901 × E_Bayestar19, combined with the relation E(B−V) = 0.98 × E(g−r) from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
 
 	
 Plotting the Dust Maps
