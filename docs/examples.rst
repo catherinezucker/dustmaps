@@ -381,7 +381,7 @@ was closer than a distance modulus of 7.95 (corresponding to ~389 pc).
 Combining the Bayestar and DECaPS 3D Dust Maps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The DECaPS map can largely be queried in a similar manner to the Bayestar map. However, due to the increased angular resolution of the DECaPS map (approximately 1′), the size of the data products is significantly larger. To accommodate users with limited storage, the `dustmaps` package provides a few additional options.
+The DECaPS map can largely be queried in a similar manner to the Bayestar map. However, due to the increased angular resolution of the DECaPS map (approximately 1′), the size of the data products is significantly larger. To accommodate users with limited storage, the :code:`dustmaps` package provides a few additional options.
 
 First, users may choose to download only the *mean* map (~7 GB), which is significantly smaller than the full dataset containing both the mean and samples (~35 GB). If only the mean map is downloaded, an additional argument must be specified (``mean_only=True``) that precludes querying in any other mode (e.g. random sample, etc. )
 
@@ -390,7 +390,7 @@ First, users may choose to download only the *mean* map (~7 GB), which is signif
     from dustmaps.decaps import DECaPSQuery
     decaps = DECaPSQuery(mean_only=True)
 
-By default, the `DECaPSQuery` class loads the full map into memory. For lightweight usage, `dustmaps` also provides `DECaPSQueryLite`, which uses memory mapping to avoid loading the full dataset into RAM. This is ideal for small queries:
+By default, the `DECaPSQuery` class loads the full map into memory. For lightweight usage, :code:`dustmaps` also provides `DECaPSQueryLite`, which uses memory mapping to avoid loading the full dataset into RAM. This is ideal for small queries:
 
 .. code-block:: python
 
