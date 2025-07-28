@@ -396,7 +396,7 @@ The DECaPSQuery class will load the entire map into memory. For less intensive q
 	from dustmaps.decaps import DECaPSQueryLite
 	decapslite = DECaPSQueryLite()
 
-To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for regions north of declination :math:\delta = -30^\circ and DECaPS for regions south of :math:\delta = -30^\circ, taking advantage of each map’s optimal sky coverage. As an example, we can generate a few dozen random coordinates in the Galactic plane, filter them by declination, and then query the appropriate map—Bayestar or DECaPS—based on each coordinate’s position.
+To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for regions north of declination −30° and DECaPS for regions south of −30°, taking advantage of each map’s optimal sky coverage. As an example, we can generate a few dozen random coordinates in the Galactic plane, filter them by declination, and then query the appropriate map—Bayestar or DECaPS—based on each coordinate’s position.
 
 
 
