@@ -401,30 +401,30 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
 
 .. code-block:: python
 
-	import numpy as np
-	from astropy.coordinates import SkyCoord
-	from astropy import units
-	
-	#generate random coordinates in the plane
-	n_coords = 50
-	l = np.random.uniform(0, 360, n_coords)
-	b = np.random.uniform(-10, 10, n_coords)
-	
-	gal_coords = SkyCoord(l=l*u.deg, b=b*u.deg, distance=3*units.kpc, frame='galactic')
-	
-	# Filter based on declination
-	mask_north = gal_coords.icrs.dec.deg > -30
-	mask_south = gal_coords.icrs.dec.deg <= -30
-	
-	#query both maps
-	ebv_bs = 0.883 * bayestar(gal_coords[mask_north], mode='random_sample')
-	ebv_decaps = decapslite(gal_coords[mask_south], mode='random_sample')
-	
-	#compile reddening results
-	ebv_compiled = np.empty((n_coords))
-	ebv_compiled[mask_north] = ebv_bs
-	ebv_compiled[mask_south] = ebv_decaps
-	
+    import numpy as np
+    from astropy.coordinates import SkyCoord
+    from astropy import units
+
+    # Generate random coordinates in the plane
+    n_coords = 50
+    l = np.random.uniform(0, 360, n_coords)
+    b = np.random.uniform(-10, 10, n_coords)
+
+    gal_coords = SkyCoord(l=l*u.deg, b=b*u.deg, distance=3*units.kpc, frame='galactic')
+
+    # Filter based on declination
+    mask_north = gal_coords.icrs.dec.deg > -30
+    mask_south = gal_coords.icrs.dec.deg <= -30
+
+    # Query both maps
+    ebv_bs = 0.883 * bayestar(gal_coords[mask_north], mode='random_sample')
+    ebv_decaps = decapslite(gal_coords[mask_south], mode='random_sample')
+
+    # Compile reddening results
+    ebv_compiled = np.empty((n_coords))
+    ebv_compiled[mask_north] = ebv_bs
+    ebv_compiled[mask_south] = ebv_decaps
+
     print(ebv_compiled)
     >>> [0.66225004 1.43870151 0.37085998 0.48639923 0.99045843 0.44150001
      0.16003418 0.45948145 0.21081543 0.2649     0.10596    0.18994141
@@ -435,6 +435,7 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
      0.22075    1.46191406 0.12362    0.93672919 0.2767269  0.89332843
      0.52096999 0.16003418 0.88449842 0.13171387 0.49448001 0.25
      0.24724001 2.921875  ]
+
 
 		
 The DECaPS map reports reddening directly in units of E(B−V), while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to E(B−V), we use the relation E(B−V) = 0.883 × E_Bayestar19. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives E(g−r) = 0.901 × E_Bayestar19, combined with the relation E(B−V) = 0.98 × E(g−r) from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
