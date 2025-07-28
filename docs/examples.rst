@@ -139,7 +139,7 @@ When querying a 3D dust map, there are two slight complications:
    the median reddening, mean reddening, a random sample of the reddening, etc.
 
 Let's see how this works out with the "Bayestar" 2019 3D dust map of
-`Green et al. (2019) <http://argonaut.skymaps.info>`_. The DECaPS 3D dust map (complementing Bayestar in the southern Galactic plane) can be queried in a similar manner. 
+`Green et al. (2019) <http://argonaut.skymaps.info>`_. The DECaPS 3D dust map from `Zucker, Saydjari, and Speagle et al. (2025) https://ui.adsabs.harvard.edu/abs/2025arXiv250302657Z/abstract>`_ (complementing Bayestar in the southern Galactic plane) can be queried in a similar manner. 
 
 How Distances are Handled
 ~~~~~~~~~~~~~~~~~~~~~~~~~
