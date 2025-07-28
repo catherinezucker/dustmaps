@@ -424,6 +424,18 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
 	ebv_compiled = np.empty((n_coords))
 	ebv_compiled[mask_north] = ebv_bs
 	ebv_compiled[mask_south] = ebv_decaps
+	
+    print(ebv_compiled)
+    >>> [0.66225004 1.43870151 0.37085998 0.48639923 0.99045843 0.44150001
+     0.16003418 0.45948145 0.21081543 0.2649     0.10596    0.18994141
+     0.36010742 0.32671002 0.44150001 1.25460923 0.70639998 1.26343918
+     0.57394999 0.04415    0.83002001 1.64257812 0.53054923 0.27373001
+     1.28992915 0.09713    0.32671002 0.81385845 0.32671002 0.21191999
+     0.58278    1.52246094 0.49597847 0.26564923 0.83885002 2.88815928
+     0.22075    1.46191406 0.12362    0.93672919 0.2767269  0.89332843
+     0.52096999 0.16003418 0.88449842 0.13171387 0.49448001 0.25
+     0.24724001 2.921875  ]
+
 		
 The DECaPS map reports reddening directly in units of E(B−V), while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to E(B−V), we use the relation E(B−V) = 0.883 × E_Bayestar19. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives E(g−r) = 0.901 × E_Bayestar19, combined with the relation E(B−V) = 0.98 × E(g−r) from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
 
