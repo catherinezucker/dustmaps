@@ -425,7 +425,7 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
 	ebv_compiled[mask_north] = ebv_bs
 	ebv_compiled[mask_south] = ebv_decaps
 		
-The DECaPS map reports reddening directly in units of E(B−V), while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to E(B−V), we use the relation E(B−V) = 0.88 × E_Bayestar19. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives E(g−r) = 0.901 × E_Bayestar19, combined with the relation E(B−V) = 0.98 × E(g−r) from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
+The DECaPS map reports reddening directly in units of E(B−V), while the Bayestar19 map uses arbitrary units. To convert Bayestar19 to E(B−V), we use the relation E(B−V) = 0.883 × E_Bayestar19. This conversion factor is based on Equation 30 from `Green et al. (2019) <https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract>`_, which gives E(g−r) = 0.901 × E_Bayestar19, combined with the relation E(B−V) = 0.98 × E(g−r) from `Schlafly & Finkbeiner (2011) <http://iopscience.iop.org/0004-637X/737/2/103/article#apj398709t6>`_.
 
 	
 Plotting the Dust Maps
