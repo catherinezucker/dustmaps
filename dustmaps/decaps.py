@@ -280,7 +280,7 @@ class DECaPSQuery(DustMap):
 
         Args:
             coords (:obj:`astropy.coordinates.SkyCoord`): The coordinates to query.
-            mode (Optional[:obj:`str`]): Seven different query modes are available:
+            mode (Optional[:obj:`str`]): Six different query modes are available:
                 'random_sample', 'random_sample_per_pix' 'samples', 'median',
                 'mean', and 'percentile'. The :obj:`mode` determines how the
                 output will reflect the probabilistic nature of the DECaPS
@@ -702,7 +702,7 @@ class DECaPSQueryLite(DustMap):
 
         Args:
             coords (:obj:`astropy.coordinates.SkyCoord`): The coordinates to query.
-            mode (Optional[:obj:`str`]): Seven different query modes are available:
+            mode (Optional[:obj:`str`]): Six different query modes are available:
                 'random_sample', 'random_sample_per_pix' 'samples', 'median',
                 'mean', and 'percentile'. The :obj:`mode` determines how the
                 output will reflect the probabilistic nature of the DECaPS
