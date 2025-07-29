@@ -445,7 +445,7 @@ Plotting the Dust Maps
 ----------------------
 
 We'll finish by plotting a comparison of the SFD, Planck Collaboration,
-Bayestar, and DECaPS Dust maps. First, we'll import the necessary modules:
+Bayestar, and DECaPS dust maps. First, we'll import the necessary modules:
 
 .. code-block :: python
     
