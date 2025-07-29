@@ -157,7 +157,7 @@ reddening along the entire line of sight.
 
     coords = SkyCoord(180., 0., unit='deg', frame='galactic')
     
-    bayestar = BayestarQuery(max_samples=2)
+    bayestar = BayestarQuery(max_samples=2, version='bayestar2019')
 
     E = bayestar(coords, mode='random_sample')
 
