@@ -410,7 +410,7 @@ To combine the Bayestar and DECaPS 3D dust maps, users should query Bayestar for
     l = np.random.uniform(0, 360, n_coords)
     b = np.random.uniform(-10, 10, n_coords)
 
-    gal_coords = SkyCoord(l=l*u.deg, b=b*u.deg, distance=3*units.kpc, frame='galactic')
+    gal_coords = SkyCoord(l=l*units.deg, b=b*units.deg, distance=3*units.kpc, frame='galactic')
 
     # Filter based on declination
     mask_north = gal_coords.icrs.dec.deg > -30
