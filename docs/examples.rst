@@ -383,7 +383,7 @@ Combining the Bayestar and DECaPS 3D Dust Maps
 
 The DECaPS map can largely be queried in a similar manner to the Bayestar map. However, due to the increased angular resolution of the DECaPS map (approximately 1′), the size of the data products is significantly larger. To accommodate users with limited storage, the :code:`dustmaps` package provides a few additional options.
 
-First, users may choose to download only the *mean* map (~7 GB), which is significantly smaller than the full dataset containing both the mean and samples (~31 GB). If only the mean map is downloaded, an additional argument must be specified (``mean_only=True``) that precludes querying in any other mode (e.g. random sample, etc. )
+First, users may choose to download only the *mean* map (~8 GB), which is significantly smaller than the full dataset containing both the mean and samples (~33 GB). If only the mean map is downloaded, an additional argument must be specified (``mean_only=True``) that precludes querying in any other mode (e.g. random sample, etc. )
 
 .. code-block:: python
 
